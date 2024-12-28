@@ -1,0 +1,15 @@
+include header files
+
+window wd= window_init()
+soundgen sg= soundgen_init()
+
+soundwave curr_wave{}
+
+while 1:
+    input_buff = capture_current_input()
+    curr_wave=sg.gen_soundwave(input_buff, curr_wave)
+    emit_sound(curr_wave)
+    wd.show_change(sg.get_changes(input_buff))
+    sg.alter_settings(input_buff)
+    wait_until_next_frame()
+    wd.refresh_win()
